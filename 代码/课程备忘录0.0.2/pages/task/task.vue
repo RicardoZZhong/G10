@@ -9,7 +9,7 @@
 					</uni-list-item>
 					<!-- <button @click="confirm()">完成</button> -->
 				</view>
-				<view>{{_id}}</view>
+				
 			</uni-list>
 		</view>
 

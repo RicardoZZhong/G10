@@ -107,7 +107,7 @@
 		    console.log(e.text);//提交
 			console.log(e.fontSize);//16px
 			uni.navigateTo({
-				url:'../editcourse/editcourse?id='+'学生'
+				url:'../editcourse/editcourse?id='+'教师'
 			})
 		}
 	}

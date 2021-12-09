@@ -116,9 +116,29 @@
 				"navigationBarTitleText": "添加任务"
 
 			}
+		},
+
+		{
+			"path": "pages/teacher_course/teacher_course",
+			"style": {
+				"navigationBarTitleText": "添加任务",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [
+				
+							{
+								"text": "+",
+								
+								"type": "none",
+								"color": "#FFFFFF",
+								"background": "#000000",
+								"fontSize": "25px"
+							}
+						]
+					}
+				}
+			}
 		}
-
-
 
 		, {
 			"path": "pages/login/login",
@@ -131,7 +151,8 @@
 			"path": "pages/check/check",
 			"style": {
 				"navigationBarTitleText": "审核",
-				"enablePullDownRefresh": false,
+				"enablePullDownRefresh": false,				
+				"autoBackButton": false,
 				"app-plus": {
 					"titleNView": {
 						"buttons": [
@@ -139,6 +160,7 @@
 							{
 								"text": "历史",
 								"type": "none",
+								
 								"color": "#FFFFFF",
 								"background": "#000000",
 								"fontSize": "10px"

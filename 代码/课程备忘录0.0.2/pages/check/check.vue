@@ -57,6 +57,7 @@
 		
 		onLoad(){
 			this.getchecktable()
+			
 		},
 		methods: {
 			todetail(idnum){

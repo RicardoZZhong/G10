@@ -14,10 +14,10 @@ exports.main = async (event, context) => {
 
 	for (let i = 0; i < 1000; i++) {
 		if (i == 800) {
-			let result = await db.collection('course_stu').add({
+			let result = await db.collection('course_tea').add({
 				course_id: which_course.data[0]._id,
 				course_name: event.course_name,
-				stu_idnum: event.idnum,
+				tea_idnum: event.idnum,
 
 			})
 		}

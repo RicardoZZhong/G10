@@ -3,9 +3,9 @@
 
 		<view class="main">
 			<view class="task" id="task_course">
-				<textarea  placeholder="请输入课程名" v-model="course_name" class="text"></textarea>
+				<textarea placeholder="请输入课程名" v-model="course_name" class="text"></textarea>
 			</view>
-			
+
 			<view class="task">
 				<select-lay :zindex="1211" :value="course_day" name="name" placeholder="请选择课程所在日" :options="datalist"
 					@selectitem="selectdayitem" id="select">
@@ -64,8 +64,8 @@
 				start_time: '',
 				end_time: '',
 				course_add: '',
-				idnum:'',
-				coursenum:'',
+				idnum: '',
+				coursenum: '',
 			}
 		},
 		methods: {
@@ -96,18 +96,18 @@
 					this.tval = ""
 				}
 			},
-			add_course: function(){
-				
+			add_course: function() {
+
 				uniCloud.callFunction({
-					name:"course_exist",
+					name: "course_exist",
 					data: {
 						course_name: this.course_name,
 						course_day: this.course_day,
 						start_time: this.start_time,
 						end_time: this.end_time,
 						course_add: this.course_add,
-						idnum:this.idnum,
-										
+						idnum: this.idnum,
+						id: ''
 					},
 				}).then((res) => {
 					const {
@@ -116,22 +116,23 @@
 					// console.log(result.coursenum )
 					// this.info=result.data
 					this.coursenum = result.coursenum
-					
+
 					console.log(this.coursenum)
-					
+
 				})
-				
-				if(this.coursenum==0){
+
+
+				if (this.coursenum == 0) {
 					uniCloud.callFunction({
-						name:"add_course",
+						name: "add_course",
 						data: {
 							course_name: this.course_name,
 							course_day: this.course_day,
 							start_time: this.start_time,
 							end_time: this.end_time,
 							course_add: this.course_add,
-							idnum:this.idnum,
-											
+							idnum: this.idnum,
+
 						},
 						// 成功
 						success(res) {
@@ -141,35 +142,68 @@
 								icon: 'none',
 								duration: 1000
 							});
-							
+
 						},
-						
+
 					})
 				}
+
+				let j = 0;
+				for (let i = 0; i < 500; i++) {
+					j++;
+				}
+				if (this.id == '学生') {
+					uniCloud.callFunction({
+						name: "add_course_stu",
+						data: {
+							course_name: this.course_name,
+							course_day: this.course_day,
+							start_time: this.start_time,
+							end_time: this.end_time,
+							course_add: this.course_add,
+							idnum: this.idnum,
+
+						},
+						// 成功
+						success(res) {
+							console.log("添加课程success");
+							uni.showToast({
+								title: '添加课程成功',
+								icon: 'none',
+								duration: 1000
+							});
+
+						},
+
+					})
+				}
+				if (this.id == '教师') {
+					uniCloud.callFunction({
+						name: "add_course_tea",
+						data: {
+							course_name: this.course_name,
+							course_day: this.course_day,
+							start_time: this.start_time,
+							end_time: this.end_time,
+							course_add: this.course_add,
+							idnum: this.idnum,
 				
-				uniCloud.callFunction({
-					name:"add_course_stu",
-					data: {
-						course_name: this.course_name,
-						course_day: this.course_day,
-						start_time: this.start_time,
-						end_time: this.end_time,
-						course_add: this.course_add,
-						idnum:this.idnum,
-										
-					},
-					// 成功
-					success(res) {
-						console.log("添加课程success");
-						uni.showToast({
-							title: '添加课程成功',
-							icon: 'none',
-							duration: 1000
-						});
-						
-					},
-					
-				})
+						},
+						// 成功
+						success(res) {
+							console.log("添加课程success");
+							uni.showToast({
+								title: '添加课程成功',
+								icon: 'none',
+								duration: 1000
+							});
+				
+						},
+				
+					})
+				}
+
+
 				// uniCloud.callFunction({
 				// 	name:"add_course",
 				// 	data: {
@@ -179,7 +213,7 @@
 				// 		end_time: this.end_time,
 				// 		course_add: this.course_add,
 				// 		idnum:this.idnum,
-										
+
 				// 	},
 				// 	// 成功
 				// 	success(res) {
@@ -189,15 +223,15 @@
 				// 			icon: 'none',
 				// 			duration: 1000
 				// 		});
-						
+
 				// 	},
 				// 	//失败
 				// 	fail(e) {
 				// 		console.log(e);
 				// 	}
 				// })
-				
-				
+
+
 				uni.switchTab({
 					url: '../course/course'
 				});
@@ -209,9 +243,10 @@
 		// 	});
 		// 	return true
 		// },
-		onLoad() {
-			this.idnum=uni.getStorageSync("globalUser");
+		onLoad(option) {
+			this.idnum = uni.getStorageSync("globalUser");
 			console.log(this.idnum)
+			this.id = option.id
 		},
 		onReady() {
 			this.datalist = [{
@@ -315,10 +350,12 @@
 	.start_endtime {
 		width: 300rpx;
 	}
-	.text{
+
+	.text {
 		margin-top: 10rpx;
 		margin-left: 15rpx;
 	}
+
 	#starttime {
 		float: left;
 	}
@@ -335,10 +372,12 @@
 		margin: 40px;
 
 	}
-	.btn{
+
+	.btn {
 		color: #FFFFFF;
 		background-color: #7CCD7C;
 	}
+
 	#task_title {
 		margin-top: 200rpx;
 	}

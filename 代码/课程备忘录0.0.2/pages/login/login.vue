@@ -119,12 +119,22 @@
 					} = res
 					this.ifpass = result.ifpass
 					if (this.ifpass == 1) {
-						console.log("okok"),
-							uni.setStorageSync("globalUser", this.inputidnum);
+						console.log("okok")
+						uni.setStorageSync("globalUser", this.inputidnum);
 						uni.setStorageSync("globalUserId", this.inputid);
 						if (this.inputid == "学生") {
 							uni.switchTab({
 								url: '../course/course?idnum=' + this.inputidnum
+							});
+						}
+						else if(this.inputid == "教师"){
+							uni.navigateTo({
+								url: '../teacher_course/teacher_course?idnum=' + this.inputidnum
+							});
+						}
+						else if(this.inputid == "管理员"){
+							uni.navigateTo({
+								url: '../check/check' 
 							});
 						}
 					} else {
@@ -138,27 +148,6 @@
 
 
 				})
-
-
-
-
-
-				// uniCloud.callFunction({
-				// 	name:"login",
-				// 	data:{
-				// 		// name:"wdz",
-				// 		// age:"18",
-				// 		name:this.inputid,
-				// 		age:this.inputpwd,
-				// 	},
-				// 	success(res) {
-				// 		console.log("成功返回结果为",res)
-				// 	},
-				// 	fail(res) {
-				// 		console.log("失败返回结果为",res)
-				// 	},
-
-				// })
 
 
 

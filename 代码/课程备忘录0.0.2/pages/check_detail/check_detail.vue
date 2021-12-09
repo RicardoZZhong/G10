@@ -85,6 +85,7 @@
 				pwd:"",
 			}
 		},
+		
 		onLoad(option) {
 			this.idnum = option.idnum;
 			// console.log(option)
@@ -209,12 +210,18 @@
 <style>
 	.content {
 		margin-top: 30rpx;
-		margin-left: 40rpx;
+	
 	}
-
+	
 	.detail {
-		font-size: 60rpx;
+		font-size: 40rpx;
 		margin-top: 20rpx;
+		margin-right: 30rpx;
+		margin-left: 30rpx;
+		padding: 20rpx;
+		background-color: #F2F2F2;
+		border-radius: 20rpx;
+	
 	}
 
 	.detailvalue {

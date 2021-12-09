@@ -13,7 +13,7 @@
 			<input class="zai-input" placeholder-class placeholder="请输入验证邮箱" v-model="regemail" />
 			<input class="zai-input" placeholder-class password placeholder="请输入密码" v-model="regpwd" />
 			<input class="zai-input" placeholder-class password placeholder="请再输入一次密码" v-model="regpwd2" />
-			<view>"身份："+{{regid}} +"name:"+{{regname}}</view>
+			<!-- <view>"身份："+{{regid}} +"name:"+{{regname}}</view> -->
 			<button class="zai-btn" @click="reg()">立即注册</button>
 			<navigator url="../zaizai-login/index" open-type='navigateBack' hover-class="none" class="zai-label">
 				已有账号，点此去登录.</navigator>
@@ -50,10 +50,7 @@
 					label: "学生",
 					value: "学生"
 				},
-				{
-					label: "管理员",
-					value: "管理员"
-				}
+				
 			];
 		},
 		methods: {
