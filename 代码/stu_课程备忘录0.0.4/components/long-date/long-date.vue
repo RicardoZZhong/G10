@@ -84,13 +84,16 @@
 				case 'between':
 
 					//获取开始时间
-					var startDate = new Date(this.startTime + ' 00:00:00')
-
+					console.log(new Date().getHours())
+					console.log(new Date().getMinutes())
+					var startDate = new Date(this.startTime + '00:00:00')
+					// var startDate = new Date(this.startTime + new Date().getHours() + ':'+ new Date().getHours() + ':00')
 					//获取结束时间
 					var endDate = new Date(this.endTime + ' 00:00:00');
 
 					//设置默认选择时间
-					var chooesDate = new Date(this.startTime + ' 00:00:00')
+					// var chooesDate = new Date(this.startTime + ' 00:00:00')
+					var chooesDate = new Date(this.startTime + new Date().getHours() + ':'+ new Date().getHours() + ':00')
 
 					//获取多少天日期
 					var num = (endDate - startDate) / 86400000

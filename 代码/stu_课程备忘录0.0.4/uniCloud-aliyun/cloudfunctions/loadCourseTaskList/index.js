@@ -4,21 +4,22 @@ const db = uniCloud.database();
 const collection = db.collection("course_task")
 const collection2 = db.collection("course_task_stu")
 const dbcmd = db.command
-
+const $ = dbcmd.aggregate
 // 课程任务列表
 // 根据course_id获取该课程的所有任务，用当前时间进行筛选，除去ddl已经到了的，获取到一个task的列表
 
 // 再用stu_id和task_id查找该列表中finish = 0的,在根据task_id显示数据
 
 exports.main = async (event, context) => {
-	const $ = dbcmd.aggregate
+	
 	let res = await collection.where({
-		course_id:event.course_id
-		// task_ddl:dbcmd.gt(new Date())
+		course_id:event.course_id,
+		// task_ddl:dbcmd.gt(new Date().getTime())
+		
 		},
 		dbcmd.expr(
-		$.gt(['$time',$.dateFromString({
-			task_ddl: new Date('2022-02-02').toISOString()
+		$.gt(['task_ddl',$.dateFromString({
+			dateString : new Date('2022-02-02').toISOString()
         })])
 		)
 		).get()
